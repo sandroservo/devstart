@@ -10,14 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bulma": "^0.9.4",
     "react": "^18.2.0",
+    "react-bulma-components": "^4.1.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.14.1",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.3",
-    "saga": "^4.0.0-alpha"
+    "saga": "^4.0.0-alpha",
+    "styled-components": "^6.0.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
