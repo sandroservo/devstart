@@ -22,13 +22,25 @@ export default function auth(state = INITIAL_STATE, action) {
                 draft.token = payload.token;
                 draft.error = false;
                 draft.loading = false;
-                break
+                break;
             }
-             case "@auth/AUTH_IN_FAILURE": {
-                draft.loading = true;
-                
+
+            case "@auth/AUTH_IN_FAILURE": {
+                draft.loading = false;
+                draft.error =true;
+                break;
 
              }
+
+            case "@auth/AUTH_IN_EXIT":{
+                draft.loading = false;
+                draft.token = null;
+                draft.signed = false;
+                draft. error = false;
+                break;
+            }
+            
+            default:
         }
     })
 }
