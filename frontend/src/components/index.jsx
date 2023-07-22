@@ -1,3 +1,5 @@
 import Input from "./input"
+import { Navigate } from "./navigate"
+import { HeaderC } from "./header"
 
-export { Input }
+export { Input, Navigate, HeaderC }

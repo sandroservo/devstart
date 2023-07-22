@@ -1,14 +1,14 @@
 export function authInRequest(email, password){
     return {
         type:"@auth/AUTH_IN_RESQUEST",
-        payload:{email, password}
+        payload:{ email, password }
     }
 }
 
-export function authInSucess(token, user) {
+export function authInSuccess(token, user) {
     return {
         type: "@auth/AUTH_IN_SUCCESS",
-        payload: {token, user}
+        payload: { token, user }
     }
 }
 

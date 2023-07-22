@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { createUser, deletedUser, getAll, getById, updateUser } from "../repositories/user.repository";
 import { userValidation } from "../validations/user.validation";
 import bcrypt from 'bcrypt'
-import { number } from "zod";
+//import { number } from "zod";
 
 //create user
 export const create =  async(req: Request, res:Response) => {
@@ -17,9 +17,10 @@ export const create =  async(req: Request, res:Response) => {
     }
 }
 
-export const get =  async(req: Request, res:Response) => {
+//lista todos  os  Usuários
+export const get = async(req:any, res:Response) => {
     try {
-        const masterId = null
+        const masterId = Number(req.user?.masterId)
         const skip = Number(req.query?.skip) || 0
         const take = Number(req.query?.take) || 20
         const search = req.query?.search ? String(req.query.search) : null;
@@ -29,6 +30,8 @@ export const get =  async(req: Request, res:Response) => {
         return res.status(400).send(e)
     }
 }
+
+//listar user por ID
 export const getId =  async(req: Request, res: Response) => {
     try {
         

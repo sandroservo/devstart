@@ -8,5 +8,5 @@ export default (reducers) => {
         whitelist: ["auth", "user"],
         },
         reducers
-    )
-}
+    );
+};

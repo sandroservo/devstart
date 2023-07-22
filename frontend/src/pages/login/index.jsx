@@ -1,9 +1,13 @@
 import { Button, Columns } from "react-bulma-components"
 import { BodyImage, BodyForm, Content, Title, SubTitle, ForgotPassword } from "./styles";
 import { Input } from "../../components";
+import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form"
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup"
+import { useDispatch, useSelector } from "react-redux"
+import { authInRequest } from '../../store/modules/auth/actions'
+import { useNavigate } from "react-router-dom"
 
 // eslint-disable-next-line
 export function Login() {
@@ -15,10 +19,24 @@ export function Login() {
 
     const { control, formState: { errors }, handleSubmit } = useForm({
         resolver: yupResolver(schema)
-    })
+    });
+
+    const navigate = useNavigate();
+    const store = useSelector(store => store.auth)
+    const dispatch =  useDispatch()
+
+    // useEffect(()=> {
+    //     console.log(store)
+    // }, [store])
+
+    useEffect(() =>{
+        if(store?.signed) navigate("/")
+    }, [store])
 
     const login = (data) => {
-        console.log(data)
+        //console.log(data)
+        const { email, password } = data
+        dispatch(authInRequest( email, password))
     }
 
     return (
@@ -71,7 +89,9 @@ export function Login() {
                                     )}
                                 />
                                 <ForgotPassword>Esqueceu a senha?</ForgotPassword>
-                                <Button color="link" type="submit">Entrar</Button>
+                                <Button color="link" type="submit" className={store?.loading && "is-loading"}>
+                                    Entrar
+                                </Button>
                             </form>
                         </Content>
                     </BodyForm>

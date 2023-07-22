@@ -1,6 +1,6 @@
 import { prisma } from "../services/prima";
 import { User } from "../entities/user";
-import { number } from "zod";
+//import { number } from "zod";
 
 export const createUser = async (data: User) => {
     const user = await prisma.user.create({
@@ -38,21 +38,23 @@ export const getAll = async (
                     masterId: true
                 },
                 skip,
-                take
+                take,
             }),
             prisma.user.count({
                 where: {
                     masterId,
                     deleted: false,
-                }
-            })
+                },
+            }),
 
-        ])
+        ]);
         const totalPage = Math.ceil(total / take);
 
         return {total, totalPage, users}
 
     } else {
+        //console.log("chegou no  seach", typeof search)
+        
         const [users, total] = await prisma.$transaction([
             prisma.user.findMany({
                 where: {
@@ -75,7 +77,7 @@ export const getAll = async (
                     masterId: true
                 },
                 skip,
-                take
+                take,
             }),
             prisma.user.count({
                 where: {
