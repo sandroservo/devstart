@@ -23,7 +23,7 @@ export const get = async(req:any, res:Response) => {
         const masterId = Number(req.user?.masterId)
         const skip = Number(req.query?.skip) || 0
         const take = Number(req.query?.take) || 20
-        const search = req.query?.search ? String(req.query.search) : null;
+        const search = req.query?.search ? String(req.query?.search) : null;
         const user = await getAll(masterId, skip, take, search);
         return res.status(200).send(user);
     } catch (e) {
